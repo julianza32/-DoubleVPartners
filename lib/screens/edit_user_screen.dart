@@ -15,22 +15,22 @@ class EditUserScreen extends HookConsumerWidget {
     final idUser = GoRouterState.of(context).pathParameters['id_user'];
     final user = ref.watch(getUserProvider(idUser!));
 
-    return SingleChildScrollView(
-      child: AsyncValueBuilder(
-          value: user,
-          builder: (user) {
-            return Scaffold(
-              appBar: AppBar(
-                title: const Text('Editar usuario'),
-              ),
-              body: Padding(
+    return AsyncValueBuilder(
+        value: user,
+        builder: (user) {
+          return Scaffold(
+            appBar: AppBar(
+              title: const Text('Editar usuario'),
+            ),
+            body: SingleChildScrollView(
+              child: Padding(
                 padding: const EdgeInsets.all(20.0),
                 child: Center(
                   child: CardCustom(child: ContainerFormUser(infoUser: user)),
                 ),
               ),
-            );
-          }),
-    );
+            ),
+          );
+        });
   }
 }
